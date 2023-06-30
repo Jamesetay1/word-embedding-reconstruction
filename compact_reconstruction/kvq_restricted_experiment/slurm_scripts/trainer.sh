@@ -1,0 +1,7 @@
+sbatch kvq_restricted_experiment/slurm_scripts/train_1-1_r.slurm
+sbatch kvq_restricted_experiment/slurm_scripts/train_1-3_r.slurm
+sbatch kvq_restricted_experiment/slurm_scripts/train_1-5_r.slurm
+sbatch kvq_restricted_experiment/slurm_scripts/train_1-10_r.slurm
+sbatch kvq_restricted_experiment/slurm_scripts/train_1-20_r.slurm
+sbatch kvq_restricted_experiment/slurm_scripts/train_1-30_r.slurm
+sbatch kvq_restricted_experiment/slurm_scripts/train_3-30_r.slurm
