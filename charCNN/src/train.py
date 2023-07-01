@@ -278,7 +278,7 @@ if __name__ == '__main__':
 
     # Logging Options
     parser.add_argument('--model_name', dest='model_name', default='default_model', type=str, help='give your model a helpful name!')
-    parser.add_argument('--log_dir', dest='log_dir', type='str')
+    parser.add_argument('--log_dir', dest='log_dir', type=str)
     # Inference
     args = parser.parse_args()
     main(args)

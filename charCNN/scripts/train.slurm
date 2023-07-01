@@ -13,7 +13,7 @@ pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python src/train.py \
---npy_path data/500k.npy \
+--npy_path preprocessed/500k.npy \
 --model_name 500k_50c \
 --batch_size 50 \
 --filter_interval 50

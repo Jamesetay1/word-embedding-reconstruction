@@ -1,0 +1,5 @@
+Comparison between: reference embeddings <data/embeddings/1k.vec> and reconstructed embeddings <data/embeddings/1k.vec>
+====================================================
+mean cosine similarity: 1.0
+mode cosine similarity: [1.]
+====================================================
