@@ -30,28 +30,30 @@ def main(args):
         # Set up tree
         vec_tree = KDTree(ref_vecs)
         all_neighbors = (vec_tree.query(rec_vecs, k=args.nearest)[1]).tolist()
-        print(all_neighbors)
         neighbors_dict = defaultdict(list)
+        hit_count = 0
         for i, neighbors in enumerate(all_neighbors):
             for neighbor in neighbors:
+                if i == neighbor:
+                    hit_count += 1
+
                 neighbors_dict[ref_words[i]].append(ref_words[neighbor])
 
-
-    print(neighbors_dict)
 
     # Write to output file
     ref_name = "ref-" + os.path.split(args.reconstructed_path)[1].split('.')[0]
     rec_name = "rec-" + os.path.split(args.reference_path)[1].split('.')[0]
-    results_path = f"{args.output_dir}{rec_name}_{ref_name}.txt"
+    results_path = f"{args.output_dir}nn{args.nearest}_{rec_name}_{ref_name}.txt"
     print(f"writing to {args.output_dir}")
 
     with open(results_path, mode="w", encoding="utf-8") as f:
-        f.write(f"Comparison between: reference embeddings <{args.reference_path}> and reconstructed embeddings <{args.reconstructed_path}>\n")
+        f.write(f"Comparison between:\n\t reference embeddings <{args.reference_path}>\n\t and reconstructed embeddings <{args.reconstructed_path}>\n")
         f.write(f"====================================================\n")
         f.write(f"mean cosine similarity: {np.mean(cossim_vector)}\n")
         f.write(f"mode cosine similarity: {stats.mode(cossim_vector, keepdims=True)[0]}\n")
         f.write(f"====================================================\n")
-        f.write(f"Precision at {args.nearest} = ")
+        f.write(f"Precision at {args.nearest} = {hit_count/len(rec_dict.keys())}\n")
+        [f.write(f"{word} : {neighbors}\n") for word, neighbors in neighbors_dict.items()]
 
 def read_vec(path, top_n):
 

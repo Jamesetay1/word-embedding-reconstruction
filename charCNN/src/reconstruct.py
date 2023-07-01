@@ -59,7 +59,7 @@ def main(args):
     # Get a char to id & id to char mapping dicts
     char_to_id = get_char_dict(args.charset_path)
     id_to_char = {v: k for k, v in char_to_id.items()}
-    print(id_to_char)
+
     # Load in test dataset
     test_dataset = train.CustomDataset(args.testset_path)
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=p['batch_size'], collate_fn=pad_collate, shuffle=False)
@@ -74,20 +74,22 @@ def main(args):
     # Go through each word in the test set and reconstruct its embedding
     reconstructed_dict = {}
     for i, (word_oh, vec) in enumerate(test_loader):
+
+        print(f'In batch {i} of {len(test_loader)}')
         word_oh = word_oh.to(device)
         #vec = vec.to(device)
 
         # Do a prediction!
-        outputs = model(word_oh)
+        with torch.no_grad():
+            outputs = model(word_oh)
 
         # Convert back to character form
         for item in range(word_oh.size(dim=0)):
             word_ids = torch.argmax(word_oh[item], dim=1).tolist()
             word_ids = [i for i in word_ids if i != 0]  # Padding
-            print(word_ids)
             chars = list([*map(id_to_char.get, word_ids)])
-            print(chars)
             word = ''.join(chars)
+            print(word)
             reconstructed_dict[word] = outputs[item]
 
     print(f'reconstructed path: {args.reconstructed_path}')
@@ -98,9 +100,6 @@ def main(args):
             f.write(f'{word} ')
             print(*vec, file=f)
 
-
-
-    print(id_to_char)
 
 def get_char_dict(charset_path):
     char_dict = {}
