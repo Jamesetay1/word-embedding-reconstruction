@@ -1,6 +1,7 @@
 data/
 charCNN/results/
 charCNN/preprocessed/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
