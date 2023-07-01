@@ -195,3 +195,4 @@ data/embeddings/500k.vec
 data/embeddings/750k.vec
 data/embeddings/fastText.vec
 data/embeddings/fastText_r.vec
+*.ckpt
