@@ -12,7 +12,7 @@ import models
 
 def options():
     parser = argparse.ArgumentParser(description='PyTorch RNN/LSTM Language Model')
-    parser.add_argument('--preprocessed', type=str, default='./dataset',
+    parser.add_argument('--data', type=str, default='./dataset',
                     help='location of the preprocessed corpus')
     parser.add_argument('--glove', type=str, default='',
                     help='path to the glove embedding')
