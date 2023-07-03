@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
 
     # Output path
-    parser.add_argument('--output_dir', type=str, default='results/reconstructed_embeddings/')
+    parser.add_argument('--output_dir', type=str, default='results/embedding_comparison/')
 
 
     args = parser.parse_args()

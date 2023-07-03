@@ -114,7 +114,7 @@ class ResRNNBase(nn.Module):
 
         emb = self.drop(emb)
         forward_rnn_out = emb
-        """ Reverse the order of token embeddings for the backward rnn. """
+        """ Reverse the order of token fastText_embeddings for the backward rnn. """
         backward_rnn_out = torch.flip(emb,[0])
         forward_hidden_list = []
         backward_hidden_list = []
@@ -185,7 +185,7 @@ class CNNCharEmb(nn.Module):
 
     def forward(self, input):
         """
-        Calculate embeddings of characters
+        Calculate fastText_embeddings of characters
         
         Inputs
         ----------
@@ -279,7 +279,7 @@ class RNNModel(nn.Module):
 
     def embed(self, input):
         """
-        Calculate embeddings for each token
+        Calculate fastText_embeddings for each token
         
         Inputs
         ----------

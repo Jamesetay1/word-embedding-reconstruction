@@ -190,9 +190,9 @@ compact_reconstruction/kvq_restricted_experiment/results/sep_kvq/1-5_20230614_12
 compact_reconstruction/kvq_restricted_experiment/results/sep_kvq/3-30_20230614_12_27_27/inference_embedding_epoch300/embedding.txt
 compact_reconstruction/kvq_restricted_experiment/results/sep_kvq/3-30_20230614_12_27_27/model_epoch_300
 compact_reconstruction/kvq_restricted_experiment/tmp.out
-data/embeddings/100k.vec
-data/embeddings/500k.vec
-data/embeddings/750k.vec
-data/embeddings/fastText.vec
-data/embeddings/fastText_r.vec
+data/fastText_embeddings/100k.vec
+data/fastText_embeddings/500k.vec
+data/fastText_embeddings/750k.vec
+data/fastText_embeddings/fastText.vec
+data/fastText_embeddings/fastText_r.vec
 *.ckpt

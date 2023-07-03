@@ -21,13 +21,13 @@ def options():
     parser.add_argument('--direction', type=str, default='left2right',
                     help='type of language model direction (left2right, right2left, both)')
     parser.add_argument('--wo_tok', action='store_true',
-                    help='without token embeddings')
+                    help='without token fastText_embeddings')
     parser.add_argument('--wo_char', action='store_true',
-                    help='without character embeddings')
+                    help='without character fastText_embeddings')
     parser.add_argument('--tok_emb', type=int, default=200,
-                    help='The dimension size of word embeddings')
+                    help='The dimension size of word fastText_embeddings')
     parser.add_argument('--char_emb', type=int, default=50,
-                    help='The dimension size of character embeddings')
+                    help='The dimension size of character fastText_embeddings')
     parser.add_argument('--char_kmin', type=int, default=1,
                     help='minimum size of the kernel in the character encoder')
     parser.add_argument('--char_kmax', type=int, default=5,
