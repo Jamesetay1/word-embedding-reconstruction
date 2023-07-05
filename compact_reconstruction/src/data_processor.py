@@ -108,16 +108,13 @@ class DataProcessor(object):
 
         print("create dataset ...", flush=True)
         with codecs.open(self.ref_vec_path, "r", 'utf-8', errors='replace') as input_data:
+            vocab_size = 500000
+            dim = 300
             for i, line in enumerate(input_data):
                 
                 if i % int(self.total_line/10) == 0:
                     print('{} % done'.format(round(i / (self.total_line/100))), flush=True)
-                # col = line.strip().split()
-                if i == 0:
-                    col = line.strip('\n').split()
-                    vocab_size, dim = int(col[0]), int(col[1])
-                    continue
-                # col = line.strip().rsplit(' ', dim)
+
                 col = line.rstrip(' \n').rsplit(' ', dim)
                 word = col[0]
                 if self.args.inference:

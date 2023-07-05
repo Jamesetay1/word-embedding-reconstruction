@@ -14,7 +14,7 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python evaluation.py \
 --load './models/charCNN_500k_BiLSTM' \
---outf './output/charCNN_500k_BiLSTM.txt' \
+--outf './output/charCNN_temp.txt' \
 --cuda
 
 date

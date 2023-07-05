@@ -7,8 +7,8 @@
 
 pwd; hostname; date
 export HOME=/work/tc046/tc046/jamesetay1
-date
-source /work/tc046/tc046/jamesetay1/subword-to-word/compact_reconstruction/venv/bin/activate
+source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
+
 date
 srun scripts/preprocess.sh
 date

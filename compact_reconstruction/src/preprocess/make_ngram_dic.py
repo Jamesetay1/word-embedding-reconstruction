@@ -28,22 +28,21 @@ def main(args):
             if i % int(total_line/10) == 0:
                 print('{} % done'.format(round(i / (total_line/100))), flush=True)
 
-            if i == 0:
-                col = line.strip('\n').split()
-                vocab_size, dim = int(col[0]), int(col[1])
-            else:
-                col = line.strip(' \n').rsplit(' ', dim)
-                assert len(col) == dim+1
+            vocab_size = 500000
+            dim = 300
 
-                word = col[0]
-                # if ' ' in word:
-                #     from IPython.core.debugger import Pdb; Pdb().set_trace()
-                if len(word) > 30:
-                    continue
-                ngrams = get_ngram(word, args.n_max, args.n_min)
+            col = line.strip(' \n').rsplit(' ', dim)
+            assert len(col) == dim+1
 
-                for ngram in ngrams:
-                    idx_freq_dic[ngram] += 1
+            word = col[0]
+            # if ' ' in word:
+            #     from IPython.core.debugger import Pdb; Pdb().set_trace()
+            if len(word) > 30:
+                continue
+            ngrams = get_ngram(word, args.n_max, args.n_min)
+
+            for ngram in ngrams:
+                idx_freq_dic[ngram] += 1
 
             if args.test and i > 1000:
                 break

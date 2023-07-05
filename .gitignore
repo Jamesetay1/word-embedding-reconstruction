@@ -2,7 +2,7 @@ data/
 charCNN/results/
 charCNN/preprocessed/
 .idea/
-*/model_epoch*
+*model_epoch*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
