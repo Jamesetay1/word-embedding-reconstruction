@@ -198,3 +198,4 @@ data/fastText_embeddings/fastText.vec
 data/fastText_embeddings/fastText_r.vec
 *.ckpt
 results/embedding_comparison/nn10_rec-10k_ref-embedding_reconstruct_original.txt
+compact_reconstruction/results/sep_kvq/n3-6_mhtwo/embedding_epoch300/embedding_reconstruct_original.txt

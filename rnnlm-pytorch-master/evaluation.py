@@ -89,6 +89,7 @@ def evaluate(opts, corpus, input_texts, model, criterion, device):
             model.zero_grad()
             # output: [seq_len, nbatch, ntoken], hidden: [nlayer, nbatch, nhid]
             output, hidden = model(input, hidden)
+            print(output)
             # output_flat: LongTensor of token_ids [seq_len*batch_size, ntoken]
             output_flat = output.view(-1, output.shape[2])
             # batch_loss: LongTensor of token_ids [seq_len*batch_size]
@@ -98,6 +99,7 @@ def evaluate(opts, corpus, input_texts, model, criterion, device):
             # batch_loss: LongTensor of token_ids [batch_size]
             batch_loss = torch.mean(batch_loss, 0)
             for sent_loss in batch_loss:
+                print(sent_loss)
                 ppl = math.exp(sent_loss)
                 results.append(ppl)
     return results
@@ -117,10 +119,10 @@ def main():
     # Build a model
     ###############################################################################
     
-    with open(opts.load + ".params", 'rb') as f:
+    with open(opts.load.strip('\'') + ".params", 'rb') as f:
         params = pickle.load(f)
     model = models.RNNModel(params)
-    model.load_state_dict(torch.load(opts.load + ".pt"))
+    model.load_state_dict(torch.load(opts.load.strip('\'') + ".pt"))
     if torch.cuda.is_available():
         if not opts.cuda:
             print("WARNING: You have a CUDA device, so you should probably run with --cuda")
@@ -162,8 +164,9 @@ def main():
     ###############################################################################
     
     else:
-        input_texts = corpus.tokenize(opts.input_text)
-        with open(opts.outf, 'w') as f_out:
+        print(opts.input_text.strip('\''))
+        input_texts = corpus.tokenize(opts.input_text.strip('\''))
+        with open(opts.outf.strip('\''), 'w') as f_out:
             for ppl in evaluate(opts, corpus, input_texts, model, criterion, device):
                 f_out.write(str(ppl) + "\n")
 

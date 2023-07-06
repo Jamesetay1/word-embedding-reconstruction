@@ -13,16 +13,17 @@ export HOME=/work/tc046/tc046/jamesetay1
 module load pytorch/1.13.1-gpu
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
+
 date
 python src/train.py \
 --gpu 0 \
---ref_vec_path ../data/fastText_embeddings/10k.vec \
---freq_path ../data/frequency_counts.txt \
---multi_hash four \
+--ref_vec_path ../data/fastText_embeddings/fastText.vec \
+--freq_path ../data/frequency_counts_F.txt \
+--multi_hash two \
 --maxlen 200 \
---n_max 6 \
+--n_max 30 \
 --n_min 3 \
---codecs_path ../data/ngram_dicts/ngram_dict.min3.max6 \
+--codecs_path ../data/ngram_dicts/ngram_dict.min3.max30_F \
 --network_type 3 \
 --subword_type 4 \
 --limit_size 1000000 \

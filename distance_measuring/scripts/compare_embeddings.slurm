@@ -4,6 +4,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
 #SBATCH --time=5:00:00
+#SBATCH --account=tc046-jtaylor
 #SBATCH --output=distance_measuring/logs/%j.log
 
 pwd; hostname; date
@@ -13,7 +14,7 @@ pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python distance_measuring/compare_embeddings.py \
---reconstructed_path data/fastText_embeddings/10k.vec \
+--reconstructed_path compact_reconstruction/results/sep_kvq/n3-6_mhtwo/embedding_epoch300/embedding_reconstruct_original.txt \
 --reference_path data/fastText_embeddings/10k.vec \
 --top_n 10000 \
 --cossim \

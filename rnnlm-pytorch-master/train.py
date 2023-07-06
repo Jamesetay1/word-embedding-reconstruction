@@ -50,7 +50,7 @@ def options():
                     help='batch size')
     parser.add_argument('--cut_freq', type=int, default=10,
                     help='cut off tokens in a corpus less than this value')
-    parser.add_argument('--max_vocab_size', type=int, default=100000,
+    parser.add_argument('--max_vocab_size', type=int, default=2000000,
                     help='cut off low-frequencey tokens in a corpus if the vocabulary size exceeds this value')
     parser.add_argument('--max_length', type=int, default=300,
                     help='skip sentences more than this value')
@@ -95,7 +95,7 @@ def evaluate(opts, device, corpus, model, criterion, epoch):
     total_loss = 0.0
     # Do not back propagation
     with torch.no_grad():
-        for batch_id, batch in enumerate(data.data2batch(corpus.valid, corpus.dictionary, opts.batch_size, flag_shuf=True)):
+        for batch_id, batch in enumerate(data.data2batch(corpus.valid, corpus.dictionary, opts.batch_size, flag_shuf=False)):
             hidden = model.init_hidden(batch)
             # Cut the computation graph (Initialize)
             hidden = models.repackage_hidden(hidden)
@@ -141,7 +141,7 @@ def train(opts, device, corpus, model, criterion, optimizer, lr, epoch):
     start_time = time.time()
     for batch_id, batch in enumerate(data.data2batch(corpus.train, corpus.dictionary, opts.batch_size, flag_shuf=True)):
         # Starting each batch, we detach the hidden state from how it was previously produced.
-        # If we didn't, the model would try backpropagating all the way to start of the dataset.
+        # If we didn't, the model would try back propagating all the way to start of the dataset.
         # batch[0].shape[1]: nbatch, hidden: [nlayer, nbatch, nhid]
         hidden = model.init_hidden(batch)
         # Cut the computation graph (Initialize)
@@ -200,11 +200,14 @@ def main():
 
     corpus = data.Corpus(opts)
     if opts.pretrain == "":
-        corpus.make_dict(opts.data)
+        corpus.make_dict(opts.data, opts.glove)
     else:
         corpus.load_dict()
 
     corpus.load_data(opts.data)
+
+    # Reorder so that it matches id of training data
+
     with open(opts.dict, mode='wb') as f:
         pickle.dump(corpus.dictionary, f)
 

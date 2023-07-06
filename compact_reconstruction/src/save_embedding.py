@@ -176,30 +176,16 @@ def main(args):
 
         print('write embedding ... (referenced vectors)', flush=True)
         for i, line in enumerate(codecs.open(args.ref_vec_path, "r", 'utf-8', errors='replace')):
-            # 
-            # かきこむ単語をlistとしてもってくる
-            # from IPython.core.debugger import Pdb; Pdb().set_trace()
-            # 
-            if i == 0:
-                col = line.strip().split()
-                vocab_size = int(col[0])
-                dim = int(col[1])
-                if args.test:
-                    # fo.write('{} {}\n'.format(1000+len(data_processor.added_test_words), dim))
-                    fo.write('{} {}\n'.format(len(all_vec), dim))
-                else:
-                    # fo.write('{} {}\n'.format(vocab_size+len(data_processor.added_test_words), dim))
-                    fo.write('{} {}\n'.format(len(all_vec), dim))
-            else:
-                if args.skip_create_dataset:
-                    continue
-                try:
-                    word = line.strip().split()[0]
-                except:
-                    print('Warning: error line: {} ...'.format(line[:100]), flush=True)
-                    error_count += 1
-                    word = 'ERROR_TOKEN_{}'.format(error_count)
-                fo.write('{} {}\n'.format(word,' '.join(['{:.6f}'.format(float(v)) for v in all_vec[i-1]])))
+            dim=300
+            if args.skip_create_dataset:
+                continue
+            try:
+                word = line.strip().split()[0]
+            except:
+                print('Warning: error line: {} ...'.format(line[:100]), flush=True)
+                error_count += 1
+                word = 'ERROR_TOKEN_{}'.format(error_count)
+            fo.write('{} {}\n'.format(word,' '.join(['{:.6f}'.format(float(v)) for v in all_vec[i-1]])))
 
             if args.test and i == 1000:
                 break

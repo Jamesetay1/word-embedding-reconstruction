@@ -4,16 +4,17 @@
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
 #SBATCH --time=5:00:00
-#SBATCH --output=results/logs/reconstruct_all_%j.log
+#SBATCH --account=tc046-jtaylor
+#SBATCH --output=logs/reconstruct/%j.log
 
 pwd; hostname; date
 export HOME=/work/tc046/tc046/jamesetay1
 module load pytorch/1.13.1-gpu
-source /work/tc046/tc046/jamesetay1/subword-to-word/compact_reconstruction/venv/bin/activate
+source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python src/save_embedding.py \
 --gpu 0 \
 --inference \
---model_path results/sep_kvq/KVQ-FH_1-1/model_epoch_300
+--model_path results/sep_kvq/n3-6_mhtwo/model_epoch_300
 
 date

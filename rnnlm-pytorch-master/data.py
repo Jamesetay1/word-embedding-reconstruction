@@ -2,6 +2,7 @@ import os
 from io import open
 import torch
 import random
+import numpy as np
 import pickle
 
 class Dictionary(object):
@@ -12,6 +13,7 @@ class Dictionary(object):
         self.char2idx = {}
         self.idx2char = []
         self.char2count = {}
+        self.word2vec = {}
 
     def count_token(self, word):
         if word in self.word2count:
@@ -24,7 +26,7 @@ class Dictionary(object):
             else:
                 self.char2count[char] = 1
 
-    def add_token(self, cut_freq, max_vocab_size):
+    def add_token(self, cut_freq, max_vocab_size, glove):
         # sort words by their frequencies
         # word_sorted = [(word, freq),...]
         word_sorted = sorted(self.word2count.items(), key=lambda x:x[1], reverse=True)
@@ -43,10 +45,35 @@ class Dictionary(object):
                 if len(self.idx2char) < max_vocab_size and char not in self.char2idx:
                     self.idx2char.append(char)
                     self.char2idx[char] = len(self.idx2char) - 1
+
+        print("Loading in word embeddings...")
+        unk_vec = None
+        if glove != "":
+            with open(glove, mode='r', encoding='utf-8') as file:
+                for line in file:
+                    word = line.split()[0]
+                    if word == 'unk':
+                        unk_vec = np.array(line.split()[1:])
+                        continue
+                    if word not in self.word2idx:
+                        continue
+                    vec = np.array(line.split()[1:])
+                    self.word2vec[word] = vec
+
+        # Map all others to UNK
+        for word in set(self.word2idx.keys()).difference(set(self.word2vec.keys())):
+            self.word2vec[word] = unk_vec
+
+        assert(len(set(self.word2idx.keys()).difference(set(self.word2vec.keys()))) == 0)
+
+
+        # Reorder word2vec so it matches with char2id
+        self.word2vec = dict(sorted(self.word2vec.items(), key=lambda kv: self.word2idx[kv[0]]))
+        assert(list(self.word2vec.keys()) == self.idx2word)
+
+
         self.set_pad()
         self.set_unk()
-        # print(len(self.idx2word))
-        # print(len(self.idx2char))
 
     def set_unk(self):
         self.idx2word.append("<unk>")
@@ -111,24 +138,29 @@ class Corpus(object):
         self.valid = self.tokenize(os.path.join(path, 'valid.txt'), self.args.max_length)
         self.test = self.tokenize(os.path.join(path, 'test.txt'), self.args.max_length)
 
-    def make_dict(self, path):
+    def make_dict(self, path, glove):
         """
         Inputs
         ----------
         path: string, it indicates the location of the dataset
         """
         self.dictionary = Dictionary()
-        path = os.path.join(path, 'train.txt')
+
+        path = os.path.join(path.strip('\''), 'train.txt')
+        print(path)
         """ Add words and characters to a dictionary. """
         assert os.path.exists(path)
-        with open(path, 'r', encoding="utf8", errors='ignore') as f:
+        with open(path, 'r', encoding="utf-8", errors='ignore') as f:
             for line in f:
                 words = ["<s>"] + line.split() + ["</s>"]
                 if len(words) > self.args.max_length:
                     continue
+
                 for word in words:
                     self.dictionary.count_token(word)
-        self.dictionary.add_token(self.args.cut_freq, self.args.max_vocab_size)
+
+
+        self.dictionary.add_token(self.args.cut_freq, self.args.max_vocab_size, self.args.glove)
 
     def tokenize(self, path, max_length=-1):
         """Tokenizes a text file."""

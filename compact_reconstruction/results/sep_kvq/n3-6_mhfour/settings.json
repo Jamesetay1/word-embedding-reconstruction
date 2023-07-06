@@ -24,7 +24,7 @@
     "network_type": 3,
     "pretrained_subword_vector": null,
     "raiden": false,
-    "ref_vec_path": "../data/fastText_embeddings/10k.vec",
+    "ref_vec_path": "../data/fastText_embeddings/500k.vec",
     "result_dir": "results/",
     "skip_create_dataset": false,
     "snapshot_interval": 50,
