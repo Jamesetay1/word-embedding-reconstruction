@@ -3,7 +3,9 @@
 This repository is the main hub of work my MSc Dissertation "Word Embedding Reconstruction Methods for Language Modelling".
 
 ## Repository Contents
-This repository is a mix of my own work and forks from previous repositories.
+This repository is a mix of my own work and forks from other repositories.  
+
+`beginnerLM` is a fork of [PyTorch Tutorials: Language Models](https://github.com/yunjey/pytorch-tutorial/blob/master/tutorials/02-intermediate/language_model/main.py)  
 
 `charCNN` is a reimplementation of [Learning to Generate Word Representations using Subword Information](https://github.com/kamigaito/rnnlm-pytorch), which I use as a reconstruction method.
 
