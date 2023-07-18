@@ -46,7 +46,7 @@ class Dictionary(object):
                     self.idx2char.append(char)
                     self.char2idx[char] = len(self.idx2char) - 1
 
-        print("Loading in word embeddings...")
+        print(f"Loading in word embeddings from {glove} ...")
         unk_vec = None
         if glove != "":
             with open(glove, mode='r', encoding='utf-8') as file:
@@ -57,19 +57,19 @@ class Dictionary(object):
                         continue
                     if word not in self.word2idx:
                         continue
-                    vec = np.array(line.split()[1:])
+                    vec = np.array(line.split()[1:]).astype(float)
                     self.word2vec[word] = vec
 
-        # Map all others to UNK
-        for word in set(self.word2idx.keys()).difference(set(self.word2vec.keys())):
-            self.word2vec[word] = unk_vec
+            # Map all others to UNK
+            for word in set(self.word2idx.keys()).difference(set(self.word2vec.keys())):
+                self.word2vec[word] = unk_vec
 
-        assert(len(set(self.word2idx.keys()).difference(set(self.word2vec.keys()))) == 0)
+            assert(len(set(self.word2idx.keys()).difference(set(self.word2vec.keys()))) == 0)
 
 
-        # Reorder word2vec so it matches with char2id
-        self.word2vec = dict(sorted(self.word2vec.items(), key=lambda kv: self.word2idx[kv[0]]))
-        assert(list(self.word2vec.keys()) == self.idx2word)
+            # Reorder word2vec so it matches with char2id
+            self.word2vec = dict(sorted(self.word2vec.items(), key=lambda kv: self.word2idx[kv[0]]))
+            assert(list(self.word2vec.keys()) == self.idx2word)
 
 
         self.set_pad()

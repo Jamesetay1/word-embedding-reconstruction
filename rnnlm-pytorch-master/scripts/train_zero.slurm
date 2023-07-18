@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#SBATCH --job-name=RNNLM_charCNN
+#SBATCH --job-name=RNNLM_random
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
@@ -11,13 +11,14 @@ pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python train.py \
---glove '../charCNN/results/model500k_50c_reconstructed500k.vec' \
 --rnn_type 'LSTM' \
 --direction 'left2right' \
 --wo_char \
+--glove '../data/random_embeddings/zero500k.vec' \
 --tok_emb 300 \
 --cuda \
---save './models/charCNN_500k_LSTM' \
---dict './models/charCNN_500k_LSTM_dict.pkl'
+--save './models/zero_500k_f' \
+--dict './models/zero_500k_f_dict.pkl'
 
 date
+

@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#SBATCH --job-name=RNNLM_charCNN
+#SBATCH --job-name=RNNLM_OH
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
@@ -10,14 +10,5 @@
 pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
-python train.py \
---data './dataset/tiny_dataset' \
---glove '../data/fastText_embeddings/fastText.vec' \
---rnn_type 'LSTM' \
---direction 'left2right' \
---wo_char \
---tok_emb 300 \
---cuda \
---save './models/temp'
-
+python src/main.py
 date

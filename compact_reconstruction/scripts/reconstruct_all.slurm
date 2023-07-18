@@ -15,6 +15,6 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python src/save_embedding.py \
 --gpu 0 \
 --inference \
---model_path results/sep_kvq/n3-6_mhtwo/model_epoch_300
+--model_path results/sep_kvq/n3-30_mhtwo/model_epoch_300
 
 date

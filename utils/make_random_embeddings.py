@@ -16,9 +16,13 @@ def main(args):
         with open(args.write_path, mode='w', encoding='utf-8') as g:
             for line in f:
                 word = line.split()[0]
+                print(word)
                 vec = []
-                for i in range (1, 300):
-                    vec.append(random.uniform(-1, 1))
+                for i in range(1, 300):
+                    if args.zero_embeddings:
+                        vec.append(0.0000)
+                    else:
+                        vec.append(round(random.uniform(-1, 1), 4))
 
                 g.write(f"{word} ")
                 print(*vec, file=g)
@@ -30,6 +34,7 @@ if __name__ == '__main__':
     # Functionality Options
     parser.add_argument('--read_path', dest='read_path', type=str, default='', help='where to write the results file')
     parser.add_argument('--write_path', dest='write_path', type=str, default='', help='where to write the results file')
+    parser.add_argument('--zero_embeddings', action='store_true')
 
     # Pass args to main
     args = parser.parse_args()

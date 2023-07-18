@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import data
+import numpy as np
 
 def opts2params(opts, dictionary: data.Dictionary):
     """Convert command line options to a dictionary to construct a model"""
@@ -21,7 +22,8 @@ def opts2params(opts, dictionary: data.Dictionary):
         "nlayers" : opts.nlayers,
         "dropout" : opts.dropout,
         "init_range" : opts.init_range,
-        "tied" : opts.tied
+        "tied" : opts.tied,
+        "word2vec" : dictionary.word2vec
     }
     return params
 
@@ -178,7 +180,14 @@ class CNNCharEmb(nn.Module):
     def  __init__(self, prm):
         super(CNNCharEmb, self).__init__()
         self.prm = prm
-        self.encoder = nn.Embedding(prm["char_len"], prm["char_emb"])
+
+        if len(prm['word2vec']) == 0:
+            self.encoder = nn.Embedding(prm["char_len"], prm["char_emb"])
+        else:
+            # print(len(prm['word2vec']))
+            # print(np.array(list(prm['word2vec'].values())).astype(float).shape)
+            self.encoder = nn.Embedding.from_pretrained(torch.from_numpy(np.array(list(prm['word2vec'].values())).astype(float)), freeze=True)
+
         self.drop = nn.Dropout(prm["dropout"])
         self.conv_layers = nn.ModuleList([nn.Conv1d(prm["char_emb"], prm["char_hid"], kernel_size=ksz, padding=(prm["char_kmax"]-prm["char_kmin"])) for ksz in range(prm["char_kmin"], prm["char_kmax"]+1)])
         self.fullcon_layer = nn.Linear(prm["char_hid"]*(prm["char_kmax"] - prm["char_kmin"] + 1), prm["char_hid"])
