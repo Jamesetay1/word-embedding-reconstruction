@@ -35,7 +35,7 @@ def set_result_dest(args):
     else:
         print('error')
         exit()
-    result_dest = args.result_dir+f"/{type_name}/n{args.n_min}-{args.n_max}_mh{args.multi_hash}"
+    result_dest = args.result_dir+f"/{type_name}/n{args.n_min}-{args.n_max}_mh{args.multi_hash}_F"
     return result_dest
 
 def initial_setup(args):

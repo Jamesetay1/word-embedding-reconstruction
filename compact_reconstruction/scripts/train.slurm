@@ -21,9 +21,9 @@ python src/train.py \
 --freq_path ../data/frequency_counts_F.txt \
 --multi_hash two \
 --maxlen 200 \
---n_max 30 \
+--n_max 6 \
 --n_min 3 \
---codecs_path ../data/ngram_dicts/ngram_dict.min3.max30_F \
+--codecs_path ../data/ngram_dicts/ngram_dict.min3.max6_F \
 --network_type 3 \
 --subword_type 4 \
 --limit_size 1000000 \

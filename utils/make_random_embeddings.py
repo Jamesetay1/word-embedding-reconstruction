@@ -18,7 +18,7 @@ def main(args):
                 word = line.split()[0]
                 print(word)
                 vec = []
-                for i in range(1, 300):
+                for i in range(1, 301):
                     if args.zero_embeddings:
                         vec.append(0.0000)
                     else:
