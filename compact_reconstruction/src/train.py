@@ -35,7 +35,7 @@ def set_result_dest(args):
     else:
         print('error')
         exit()
-    result_dest = args.result_dir+f"/{type_name}/n{args.n_min}-{args.n_max}_mh{args.multi_hash}_F"
+    result_dest = args.result_dir+f"/{type_name}/n{args.n_min}-{args.n_max}_F-{args.limit_size}_H-{args.bucket_size}_Full"
     return result_dest
 
 def initial_setup(args):
@@ -172,9 +172,9 @@ if __name__ == '__main__':
 
     # model parameter
     parser.add_argument('--embed_dim', dest='embed_dim', type=int, default=300, help='# of layer')
-    parser.add_argument('--limit_size', type=int, default=10000, help='')
+    parser.add_argument('--limit_size', type=int, default=1000000, help='')
     parser.add_argument('--cnn_ksize', dest='cnn_ksize', type=int, default=3, help='')
-    parser.add_argument('--bucket_size', type=int, default=10000, help='')
+    parser.add_argument('--bucket_size', type=int, default=200000, help='')
     parser.add_argument('--n_max', type=int, default=30, help='')
     parser.add_argument('--n_min', type=int, default=3, help='')
     parser.add_argument('--multi_hash', type=str, default='', help='')

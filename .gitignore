@@ -199,3 +199,9 @@ data/fastText_embeddings/fastText_r.vec
 *.ckpt
 results/embedding_comparison/nn10_rec-10k_ref-embedding_reconstruct_original.txt
 compact_reconstruction/results/sep_kvq/n3-6_mhtwo/embedding_epoch300/embedding_reconstruct_original.txt
+cr_clean/resources/ngram_dic.max30.min3
+cr_clean/results/sep_kvq/20230724_18_09_33/inference_embedding_epoch300/embedding.txt
+cr_clean/resources/models/inference_embedding_epochfastText.600B.model/embedding.txt
+cr_clean/resources/ngram_dic.max30.min3
+cr_clean/results/sep_kvq/20230724_18_09_33/embedding_epoch300/embedding_reconstruct_original.txt
+cr_clean/resources/models/embedding_epochfastText.600B.model/embedding_reconstruct_original.txt

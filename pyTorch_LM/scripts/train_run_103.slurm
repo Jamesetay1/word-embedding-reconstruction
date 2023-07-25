@@ -3,7 +3,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
-#SBATCH --time=5:00:00
+#SBATCH --time=96:00:00
 #SBATCH --account=tc046-jtaylor
 #SBATCH --output=logs/training/%j.log
 
@@ -15,6 +15,7 @@ python main.py \
 --epochs 50 \
 --pretrained_emb ../data/random_embeddings/zero500k.vec \
 --data ./data/wikitext-103 \
+--batch_size 64 \
 --freeze_emb
 
 python main.py \
@@ -22,6 +23,7 @@ python main.py \
 --epochs 50 \
 --pretrained_emb ../data/random_embeddings/random500k.vec \
 --data ./data/wikitext-103 \
+--batch_size 64 \
 --freeze_emb
 
 python main.py \
@@ -29,6 +31,7 @@ python main.py \
 --epochs 50 \
 --pretrained_emb ../charCNN/results/model500k_50c_reconstructed500k.vec \
 --data ./data/wikitext-103 \
+--batch_size 64 \
 --freeze_emb
 
 python main.py \
@@ -36,6 +39,7 @@ python main.py \
 --epochs 50 \
 --pretrained_emb ../data/fastText_embeddings/500k.vec \
 --data ./data/wikitext-103 \
+--batch_size 64 \
 --freeze_emb
 
 date

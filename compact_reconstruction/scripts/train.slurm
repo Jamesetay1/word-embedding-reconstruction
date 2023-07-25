@@ -26,8 +26,8 @@ python src/train.py \
 --codecs_path ../data/ngram_dicts/ngram_dict.min3.max6_F \
 --network_type 3 \
 --subword_type 4 \
---limit_size 1000000 \
---bucket_size 100000 \
+--limit_size 10000 \
+--bucket_size 2000 \
 --result_dir results/ \
 --model_path models/ \
 --hashed_idx \
