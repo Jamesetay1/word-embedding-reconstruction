@@ -16,6 +16,6 @@ python src/inference.py \
 --gpu 0 \
 --model_path results/sep_kvq/20230724_18_09_33/model_epoch_300 \
 --codecs_path resources/ngram_dic.max30.min3 \
---oov_word_path ../data/wordlist/500k.txt
+--oov_word_path ../data/wordlist/fastTextS_r.txt
 
 date

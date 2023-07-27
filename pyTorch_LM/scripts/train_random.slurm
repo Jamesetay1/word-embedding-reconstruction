@@ -13,7 +13,7 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python main.py \
 --cuda \
 --epochs 50 \
---pretrained_emb ../data/random_embeddings/random500k.vec \
+--pretrained_emb ../data/baseline_embeddings/random.vec \
 --freeze_emb
 
 date

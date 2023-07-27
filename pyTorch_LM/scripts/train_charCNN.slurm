@@ -13,7 +13,7 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python main.py \
 --cuda \
 --epochs 50 \
---pretrained_emb ../charCNN/results/model500k_50c_reconstructed500k.vec \
+--pretrained_emb ../charCNN/results/charCNN.vec \
 --freeze_emb
 
 date

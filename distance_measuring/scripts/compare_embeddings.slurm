@@ -14,11 +14,83 @@ pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python distance_measuring/compare_embeddings.py \
---reconstructed_path cr_clean/results/sep_kvq/20230724_18_09_33/inference_embedding_epoch300/embedding.txt \
---reference_path data/fastText_embeddings/10k.vec \
+--reconstructed_path data/reconstructed_embeddings/charCNN.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
 --top_n 10000 \
 --cossim \
 --nearest 10 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/charCNN.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 100 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+1.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 10 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+1.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 100 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+2.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 10 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+2.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 100 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+3.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 10 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+3.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 100 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+4.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 10 \
+--wordsim
+
+python distance_measuring/compare_embeddings.py \
+--reconstructed_path data/reconstructed_embeddings/SAM3-30+4.vec \
+--reference_path data/fastText_embeddings/fastTextS_r.vec \
+--top_n 10000 \
+--cossim \
+--nearest 100 \
 --wordsim
 
 date

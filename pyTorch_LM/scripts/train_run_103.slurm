@@ -13,33 +13,8 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python main.py \
 --cuda \
 --epochs 50 \
---pretrained_emb ../data/random_embeddings/zero500k.vec \
+--pretrained_emb ../data/fastText_embeddings/fastTextS_r.vec \
 --data ./data/wikitext-103 \
---batch_size 64 \
---freeze_emb
-
-python main.py \
---cuda \
---epochs 50 \
---pretrained_emb ../data/random_embeddings/random500k.vec \
---data ./data/wikitext-103 \
---batch_size 64 \
---freeze_emb
-
-python main.py \
---cuda \
---epochs 50 \
---pretrained_emb ../charCNN/results/model500k_50c_reconstructed500k.vec \
---data ./data/wikitext-103 \
---batch_size 64 \
---freeze_emb
-
-python main.py \
---cuda \
---epochs 50 \
---pretrained_emb ../data/fastText_embeddings/500k.vec \
---data ./data/wikitext-103 \
---batch_size 64 \
 --freeze_emb
 
 date

@@ -5,16 +5,15 @@
 #SBATCH --qos=gpu
 #SBATCH --time=5:00:00
 #SBATCH --output=logs/training/%j.log
+#SBATCH --account=tc046-jtaylor
 
 pwd; hostname; date
-#module load python/3.10.8-gpu
-#module load nvidia/cudnn/8.6.0-cuda-11.6
 
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python src/train.py \
---npy_path preprocessed/500k.npy \
---model_name 500k_50c \
+--npy_path preprocessed/fastTextS_r.npy \
+--model_name fastTextS_r*50 \
 --batch_size 50 \
 --filter_interval 50
 
