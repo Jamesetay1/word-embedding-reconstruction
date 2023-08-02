@@ -1,8 +1,0 @@
-.idea
-.DS_Store
-result/
-qsub_dir/
-new-train.sh
-__pycache__/
-sftp-config.json
-

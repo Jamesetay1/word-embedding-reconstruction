@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#SBATCH --job-name=RNNLM_OH
+#SBATCH --job-name=RNNLM_charCNN+4
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
@@ -13,7 +13,7 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python main.py \
 --cuda \
 --epochs 50 \
---pretrained_emb ../charCNN/results/charCNN.vec \
+--pretrained_emb ../data/reconstructed_embeddings/charCNN+4.vec \
 --freeze_emb
 
 date
