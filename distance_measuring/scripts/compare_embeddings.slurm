@@ -14,7 +14,7 @@ pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
 python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+1.vec \
+--reconstructed_path data/reconstructed_embeddings/charCNN.vec \
 --reference_path data/fastText_embeddings/fastTextS_r.vec \
 --top_n 10000 \
 --cossim \
@@ -22,55 +22,7 @@ python distance_measuring/compare_embeddings.py \
 --wordsim
 
 python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+1.vec \
---reference_path data/fastText_embeddings/fastTextS_r.vec \
---top_n 10000 \
---cossim \
---nearest 100 \
---wordsim
-
-python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+2.vec \
---reference_path data/fastText_embeddings/fastTextS_r.vec \
---top_n 10000 \
---cossim \
---nearest 10 \
---wordsim
-
-python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+2.vec \
---reference_path data/fastText_embeddings/fastTextS_r.vec \
---top_n 10000 \
---cossim \
---nearest 100 \
---wordsim
-
-python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+3.vec \
---reference_path data/fastText_embeddings/fastTextS_r.vec \
---top_n 10000 \
---cossim \
---nearest 10 \
---wordsim
-
-python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+3.vec \
---reference_path data/fastText_embeddings/fastTextS_r.vec \
---top_n 10000 \
---cossim \
---nearest 100 \
---wordsim
-
-python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+4.vec \
---reference_path data/fastText_embeddings/fastTextS_r.vec \
---top_n 10000 \
---cossim \
---nearest 10 \
---wordsim
-
-python distance_measuring/compare_embeddings.py \
---reconstructed_path data/reconstructed_embeddings/charCNN+4.vec \
+--reconstructed_path data/reconstructed_embeddings/charCNN.vec \
 --reference_path data/fastText_embeddings/fastTextS_r.vec \
 --top_n 10000 \
 --cossim \

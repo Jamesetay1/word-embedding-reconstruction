@@ -1,9 +1,9 @@
 #!/usr/bin/bash
-#SBATCH --job-name=RNNLM_OH
+#SBATCH --job-name=TRLM_little
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --qos=gpu
-#SBATCH --time=5:00:00
+#SBATCH --time=96:00:00
 #SBATCH --account=tc046-jtaylor
 #SBATCH --output=logs/training/%j.log
 
@@ -14,6 +14,7 @@ python main.py \
 --cuda \
 --epochs 50 \
 --model Transformer \
---data ./data/wikitext-103
+--data ./data/wikitext-103 \
+--batch_size 64
 
 date

@@ -115,7 +115,8 @@ class DataProcessor(object):
                 # col = line.strip().split()
                 if i == 0:
                     col = line.strip('\n').split()
-                    vocab_size, dim = int(col[0]), int(col[1])
+                    #vocab_size, dim = int(col[0]), int(col[1])
+                    dim = 300
                     continue
                 # col = line.strip().rsplit(' ', dim)
                 col = line.rstrip(' \n').rsplit(' ', dim)

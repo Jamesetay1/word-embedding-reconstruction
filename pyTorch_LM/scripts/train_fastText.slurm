@@ -13,7 +13,6 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python main.py \
 --cuda \
 --epochs 50 \
---pretrained_emb ../data/fastText_embeddings/fastTextS_r.vec \
---freeze_emb
+--pretrained_emb ../data/fastText_embeddings/fastTextS_r.vec
 
 date

@@ -13,7 +13,19 @@ source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 python main.py \
 --cuda \
 --epochs 50 \
---pretrained_emb ../data/reconstructed_embeddings/SAM3-30+4.vec \
+--pretrained_emb ../data/reconstructed_embeddings/SAM-100.vec \
+--freeze_emb
+
+python main.py \
+--cuda \
+--epochs 50 \
+--pretrained_emb ../data/reconstructed_embeddings/SAM-100+3.vec \
+--freeze_emb
+
+python main.py \
+--cuda \
+--epochs 50 \
+--pretrained_emb ../data/reconstructed_embeddings/SAM-100+4.vec \
 --freeze_emb
 
 date

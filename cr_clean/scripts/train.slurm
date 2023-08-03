@@ -23,8 +23,8 @@ python src/train.py \
 --codecs_path resources/ngram_dic.max30.min3 \
 --network_type 3 \
 --subword_type 4 \
---limit_size 1000000 \
---bucket_size 200000 \
+--limit_size 500 \
+--bucket_size 100 \
 --result_dir results/ \
 --hashed_idx \
 --unique_false
