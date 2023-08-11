@@ -10,6 +10,8 @@
 pwd; hostname; date
 source /work/tc046/tc046/jamesetay1/subword-to-word/venv/bin/activate
 
+date
+
 python src/reconstruct.py \
 --model_path checkpoints/fastTextS_r_50_best.ckpt \
 --testset_path preprocessed/fastTextS_r.npy \

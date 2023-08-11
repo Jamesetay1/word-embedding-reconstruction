@@ -1,6 +1,7 @@
 import argparse, os
 import random
 import numpy as np
+import time
 import regex as re
 
 random.seed(0)
@@ -16,7 +17,6 @@ def main(args):
         with open(args.write_path, mode='w', encoding='utf-8') as g:
             for line in f:
                 word = line.split()[0]
-                print(word)
                 vec = []
                 for i in range(1, 301):
                     if args.zero_embeddings:
@@ -38,4 +38,7 @@ if __name__ == '__main__':
 
     # Pass args to main
     args = parser.parse_args()
+
+    start_time = time.time()
     main(args)
+    print("--- %s seconds ---" % (time.time() - start_time))

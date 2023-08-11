@@ -11,6 +11,7 @@ from chainer.training import extensions
 from chainer import cuda, serializers
 from chainer.dataset import concat_examples
 import random
+import time
 import numpy as np
 random.seed(0)
 np.random.seed(0)
@@ -117,11 +118,15 @@ def main(args):
         pass
 
     error_count = 0
+
     if not args.save_all_subword_vec:
+        start_time = time.time()
         print('batch reconstruct', flush=True)
         print('prepare dataset ...', flush=True)
         data_processor.prepare_data_for_inference()
+        print("To prepare dataset: --- %s seconds ---" % (time.time() - start_time))
 
+        start_time = time.time()
         print('calculate vectors ...', flush=True)
         inference_iter = chainer.iterators.SerialIterator(data_processor.oov_data, args.batchsize, repeat=False, shuffle=False)
         for i, batch in enumerate(inference_iter):
@@ -148,6 +153,7 @@ def main(args):
 
         fo.close()
         print('write embedding ... done')
+        print("Time to reconstruct: --- %s seconds ---" % (time.time() - start_time))
     else:
         links = [link for link in model.predictor.links()]
         for l in links:
@@ -219,5 +225,8 @@ if __name__ == '__main__':
     parser.add_argument('--oov_word_path', type=str, default="")
 
     args = parser.parse_args()
+    total_time = time.time()
     main(args)
+    print("Total Time: --- %s seconds ---" % (time.time() - total_time))
+
 

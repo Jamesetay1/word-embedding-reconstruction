@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
+import time
 import json, sys, argparse, os, math
 from torch.nn.utils.rnn import pad_sequence
 import train
@@ -34,6 +35,7 @@ class CustomDataset(torch.utils.data.Dataset):
 
 
 def main(args):
+
     p = nn.ParameterDict({})
     # Embedding and Encoding parameters
     p['vocab_size'] = 55  # 54 chars, + all zeroes is padding
@@ -73,6 +75,7 @@ def main(args):
 
     # Go through each word in the test set and reconstruct its embedding
     reconstructed_dict = {}
+    start_time = time.time()
     for i, (word_oh, vec) in enumerate(test_loader):
 
         print(f'In batch {i} of {len(test_loader)}')
@@ -89,8 +92,9 @@ def main(args):
             word_ids = [i for i in word_ids if i != 0]  # Padding
             chars = list([*map(id_to_char.get, word_ids)])
             word = ''.join(chars)
-            print(word)
             reconstructed_dict[word] = outputs[item]
+
+    print("Reconstruct: --- %s seconds ---" % (time.time() - start_time))
 
     print(f'reconstructed path: {args.reconstructed_path}')
     with open(args.reconstructed_path, mode='w', encoding='utf-8') as f:
@@ -99,6 +103,8 @@ def main(args):
 
             f.write(f'{word} ')
             print(*vec, file=f)
+
+    print("Reconstruct & Write: --- %s seconds ---" % (time.time() - start_time))
 
 
 def get_char_dict(charset_path):
@@ -124,4 +130,6 @@ if __name__ == "__main__":
 
     # Inference
     args = parser.parse_args()
+    total_time = time.time()
     main(args)
+    print("--- %s seconds ---" % (time.time() - total_time))
