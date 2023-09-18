@@ -1,6 +1,6 @@
 # Word Embedding Reconstruction with Subword Embeddings for Language Modelling
 
-This repository is the main hub of work my MSc Dissertation "Word Embedding Reconstruction with Subword Embeddings for Language Modelling", available 
+This repository is the main hub of work my MSc Dissertation "Word Embedding Reconstruction with Subword Embeddings for Language Modelling", available [here](https://github.com/Jamesetay1/word-embedding-reconstruction/blob/main/dissertation_Taylor_2023.pdf)
 
 ## Repository Contents
 This repository is a mix of my own work and forks from other repositories.  
